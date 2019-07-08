@@ -9,7 +9,7 @@
 namespace jzy\controller;
 
 
-use jzy\models\banner\BannerListForm;
+use jzy\model\banner\BannerListForm;
 use yii\web\Controller;
 
 class ApiController extends Controller

@@ -6,7 +6,7 @@
  * Time: 18:05
  */
 
-namespace jzy\models\banner;
+namespace jzy\model\banner;
 
 
 use jzy\helper\ApiBackendHelper;
