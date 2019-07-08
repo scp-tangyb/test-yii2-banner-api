@@ -6,7 +6,7 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "jiaziying\\test-yii2-banner-api\\": "banner_api/"
+            "jzy\\": "src/"
         }
     }
 }

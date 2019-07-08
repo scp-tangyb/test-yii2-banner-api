@@ -6,7 +6,7 @@
  * Time: 10:31
  */
 
-namespace backend\banner_api\controller;
+namespace jzy\controller;
 
 
 use backend\banner_api\helper\ApiBackendHelper;

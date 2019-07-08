@@ -6,7 +6,7 @@
  * Time: 16:20
  */
 
-namespace backend\banner_api\helper;
+namespace jzy\helper;
 
 
 /**

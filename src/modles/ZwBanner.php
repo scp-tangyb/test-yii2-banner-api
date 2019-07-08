@@ -1,6 +1,6 @@
 <?php
 
-namespace  backend\banner_api\models;
+namespace  jzy\models;
 
 use Yii;
 use yii\db\ActiveRecord;
