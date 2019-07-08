@@ -3,6 +3,6 @@
     "type": "library",
     "require": {},
     "description": "test",
-    "minimum-stability": "stable",
+    "minimum-stability": "stable"
 
 }
