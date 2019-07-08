@@ -1,5 +1,8 @@
 {
     "name": "jiaziying/test-yii2-banner-api",
     "type": "library",
-    "require": {}
+    "require": {},
+    "description": "test",
+    "minimum-stability": "stable",
+
 }
