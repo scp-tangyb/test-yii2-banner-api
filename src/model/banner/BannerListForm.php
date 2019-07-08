@@ -13,7 +13,7 @@ use jzy\helper\ApiBackendHelper;
 use jzy\model\BaseForm;
 use jzy\exception\BaseException;
 use jzy\helper\ErrorHelper;
-use jzy\models\ZwBanner;
+use jzy\modles\ZwBanner;
 
 
 class BannerListForm extends BaseForm

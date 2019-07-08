@@ -1,6 +1,6 @@
 <?php
 
-namespace  jzy\models;
+namespace  jzy\modles;
 
 use Yii;
 use yii\db\ActiveRecord;
