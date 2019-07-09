@@ -2,22 +2,23 @@
 /**
  * Created by PhpStorm.
  * User: jiaziying
- * Date: 2019-06-25
- * Time: 18:05
+ * Date: 2019-06-26
+ * Time: 16:25
  */
 
-namespace jzy\model\banner;
+namespace jzy\model\news;
 
 
-use jzy\helper\ApiBackendHelper;
 use jzy\model\BaseForm;
 use jzy\exception\BaseException;
 use jzy\helper\ErrorHelper;
-use jzy\modles\Banner;
+use jzy\modles\News;
+use jzy\helper\ApiBackendHelper;
 
-
-class BannerListForm extends BaseForm
+class NewsListForm extends BaseForm
 {
+
+
     public $page = 1;
     public $page_size = 10;
 
@@ -31,9 +32,9 @@ class BannerListForm extends BaseForm
     public function getList()
     {
         $offset = ($this->page - 1) * $this->page_size;
-        $list = Banner::find()
-            ->select('id,title,image,sort,type,jump,jump_id,status,create_at,publish_at')
-            ->where(['is_delete' => Banner::IS_DELETE_N]);
+        $list = News::find()
+            ->select('id,title,content,source,create_at,publish_at,status')
+            ->where(['is_delete' => News::IS_DELETE_N]);
         $count = $list->count();
         $data = $list->offset($offset)
             ->limit($this->page_size)
@@ -42,7 +43,7 @@ class BannerListForm extends BaseForm
             ->all();
         if ($list !== false) {
             foreach ($data as &$value){
-                $value = ApiBackendHelper::bannerGetList($value);
+                $value = ApiBackendHelper::newsGitList($value);
             }
             $ajaxReturn['total'] = $count;
             $ajaxReturn['lists'] = $data;
@@ -53,4 +54,5 @@ class BannerListForm extends BaseForm
 
 
     }
+
 }

@@ -6,15 +6,16 @@
  * Time: 18:05
  */
 
-namespace backend\models\banner;
+namespace jzy\model\banner;
 
-use common\components\form\BackendBaseForm;
-use common\components\helper\RedisKey;
-use common\exception\BussinessException;
-use common\helper\ErrorHelper;
-use common\models\ZwBanner;
 
-class BannerStatusForm extends BackendBaseForm
+use jzy\model\BaseForm;
+use jzy\exception\BaseException;
+use jzy\helper\ErrorHelper;
+use jzy\modles\Banner;
+
+
+class BannerStatusForm extends BaseForm
 {
     public $id;
 
@@ -28,17 +29,17 @@ class BannerStatusForm extends BackendBaseForm
 
     public function getStatus(){
         $time = time();
-        $data = ZwBanner::findOne(['id'=>$this->id]);
-        if($data->status == ZwBanner::STATUS_N){
-            $data->status = ZwBanner::STATUS_Y;
+        $data = Banner::findOne(['id'=>$this->id]);
+        if($data->status == Banner::STATUS_N){
+            $data->status = Banner::STATUS_Y;
             $data->publish_at = $time;
         }else{
-            $data->status = ZwBanner::STATUS_N;
+            $data->status = Banner::STATUS_N;
         }
         $data->update_at = $time;
         $result = $data->save(false);
         // 写入reids
-        if($data->status == ZwBanner::STATUS_Y){
+        if($data->status == Banner::STATUS_Y){
             self::getValue($data,1);
         }else{
             self::getValue($data,2);
@@ -47,7 +48,7 @@ class BannerStatusForm extends BackendBaseForm
         if($result !== false){
             return ;
         }else{
-            throw new BussinessException(ErrorHelper::SAVE_ERROR);
+            throw new BaseException(ErrorHelper::SAVE_ERROR);
         }
     }
 
@@ -75,9 +76,9 @@ class BannerStatusForm extends BackendBaseForm
 
         $value = json_encode($value);
         if($type ==1){
-            \Yii::$app->redis->hset(RedisKey::build([$key])['key'],$data['id'],$value);
+            \Yii::$app->redis->hset($key,$data['id'],$value);
         }else if($type ==2){
-            \Yii::$app->redis->hdel(RedisKey::build([$key])['key'],$data['id']);
+            \Yii::$app->redis->hdel($key,$data['id']);
         }
 
     }

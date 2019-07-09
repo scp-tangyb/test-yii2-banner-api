@@ -2,20 +2,20 @@
 /**
  * Created by PhpStorm.
  * User: jiaziying
- * Date: 2019-06-25
- * Time: 18:05
+ * Date: 2019-06-26
+ * Time: 14:25
  */
 
-namespace jzy\model\banner;
+namespace jzy\model\news;
 
 
 use jzy\model\BaseForm;
 use jzy\exception\BaseException;
 use jzy\helper\ErrorHelper;
-use jzy\modles\Banner;
+use jzy\modles\News;
 
 
-class BannerDeleteForm extends BaseForm
+class NewsDeleteForm extends BaseForm
 {
     public $id;
 
@@ -26,14 +26,14 @@ class BannerDeleteForm extends BaseForm
         ];
     }
 
+    public function getDelete()
+    {
 
-    public function getDelete(){
-
-        $data = Banner::findOne(['id'=>$this->id]);
-        if($data->status == Banner::STATUS_Y){
+        $data = News::findOne(['id'=>$this->id]);
+        if($data->status == News::STATUS_Y){
             throw new BaseException(ErrorHelper::STATUS_Y_ERROR);
         }
-        $data->is_delete = Banner::IS_DELETE_Y;
+        $data->is_delete = News::IS_DELETE_Y;
         $data->update_at = time();
         $result = $data->save(false);
         if($result !== false){
@@ -42,4 +42,5 @@ class BannerDeleteForm extends BaseForm
             throw new BaseException(ErrorHelper::SAVE_ERROR);
         }
     }
+
 }

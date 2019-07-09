@@ -6,15 +6,15 @@
  * Time: 18:05
  */
 
-namespace backend\models\banner;
+namespace jzy\model\banner;
 
 
-use common\components\form\BackendBaseForm;
-use common\exception\BussinessException;
-use common\helper\ErrorHelper;
-use common\models\ZwBanner;
+use jzy\model\BaseForm;
+use jzy\exception\BaseException;
+use jzy\helper\ErrorHelper;
+use jzy\modles\Banner;
 
-class BannerAddForm extends BackendBaseForm
+class BannerAddForm extends BaseForm
 {
 
     public $title;
@@ -33,7 +33,7 @@ class BannerAddForm extends BackendBaseForm
     }
     public function getAdd(){
 
-        $data = new ZwBanner();
+        $data = new Banner();
         $data->title = $this->title;
         $data->image = $this->image;
         $data->type = $this->type;
@@ -47,7 +47,7 @@ class BannerAddForm extends BackendBaseForm
         if($result !== false){
             return ;
         }else{
-            throw new BussinessException(ErrorHelper::SAVE_ERROR);
+            throw new BaseException(ErrorHelper::SAVE_ERROR);
         }
     }
 }

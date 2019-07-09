@@ -6,15 +6,16 @@
  * Time: 18:05
  */
 
-namespace backend\models\banner;
+namespace jzy\model\banner;
 
 
-use common\components\form\BackendBaseForm;
-use common\exception\BussinessException;
-use common\helper\ErrorHelper;
-use common\models\ZwBanner;
+use jzy\model\BaseForm;
+use jzy\exception\BaseException;
+use jzy\helper\ErrorHelper;
+use jzy\modles\Banner;
 
-class BannerUpdateForm extends BackendBaseForm
+
+class BannerUpdateForm extends BaseForm
 {
     public $id;
     public $title;
@@ -34,9 +35,9 @@ class BannerUpdateForm extends BackendBaseForm
 
     public function getUpdate(){
 
-        $data = ZwBanner::findOne(['id'=>$this->id]);
-        if($data->status == ZwBanner::STATUS_Y){
-            throw new BussinessException(ErrorHelper::STATUS_Y_ERROR);
+        $data = Banner::findOne(['id'=>$this->id]);
+        if($data->status == Banner::STATUS_Y){
+            throw new BaseException(ErrorHelper::STATUS_Y_ERROR);
         }
         $data->title = $this->title;
         $data->image = $this->image;
@@ -51,7 +52,7 @@ class BannerUpdateForm extends BackendBaseForm
         if($result !== false){
             return ;
         }else{
-            throw new BussinessException(ErrorHelper::SAVE_ERROR);
+            throw new BaseException(ErrorHelper::SAVE_ERROR);
         }
     }
 }
